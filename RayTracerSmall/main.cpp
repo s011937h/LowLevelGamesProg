@@ -31,6 +31,8 @@
 #include <algorithm>
 #include <sstream>
 #include <string.h>
+#include <memory>
+
 #include "Spheres.h"
 
 #if defined __linux__ || defined __APPLE__
@@ -48,12 +50,16 @@
 //[/comment]
 int main(int argc, char **argv)
 {
-	Sphere* spheres = new Sphere();
+	//std::vector<std::unique_ptr<Sphere>> sphereList;
+
+	//sphereList.push_back(std::make_unique<Sphere>(Vec3f(1,2,3), 32, Vec3f(2,65,2), 0.5, 0.7, Vec3f(0,0,0));
+
+	//Sphere* spheres = new Sphere(const Vec3f & c, const float r, const Vec3f & sc, const float refl = 0, const float transp = 0, const Vec3f & ec = 0);
 	// This sample only allows one choice per program execution. Feel free to improve upon this
 	srand(13);
 	//BasicRender();
 	//SimpleShrinking();
-	spheres.SmoothScaling();
+	//spheres.SmoothScaling();
 
 	return 0;
 }

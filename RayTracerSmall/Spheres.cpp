@@ -1,18 +1,19 @@
 #include "Spheres.h"
 
-Sphere::Sphere(const Vec3f& c, const float& r, const Vec3f& sc, const float& refl = 0, const float& transp = 0, const Vec3f& ec = 0)
+Sphere::Sphere(const Vec3f& center, const float radius, const Vec3f& surfaceColor, const float reflection = 0, const float transparency = 0, const Vec3f& emissionColor = 0)
+	: m_center(center), m_radius(radius), m_radius2(radius* radius), m_surfaceColor(surfaceColor), m_emissionColor(emissionColor),	m_transparency(transparency), reflection(reflection)
 {
 
 }
 
 bool Sphere::intersect(const Vec3f& rayorig, const Vec3f& raydir, float& t0, float& t1) const
 {
-	Vec3f l = center - rayorig;
+	Vec3f l = m_center - rayorig;
 	float tca = l.dot(raydir);
 	if (tca < 0) return false;
 	float d2 = l.dot(l) - tca * tca;
-	if (d2 > radius2) return false;
-	float thc = sqrt(radius2 - d2);
+	if (d2 > m_radius2) return false;
+	float thc = sqrt(m_radius2 - d2);
 	t0 = tca - thc;
 	t1 = tca + thc;
 
@@ -24,12 +25,12 @@ bool Sphere::intersect(const Vec3f& rayorig, const Vec3f& raydir, float& t0, flo
 //[/comment]
 #define MAX_RAY_DEPTH 5
 
-float Sphere::mix(const float& a, const float& b, const float& mix)
+float Sphere::mix(const float a, const float b, const float mix)
 {
 	return b * mix + a * (1 - mix);
 }
 
-Sphere::Vec3f Sphere::trace(const Vec3f& rayorig, const Vec3f& raydir, const std::vector<Sphere>& spheres, const int& depth)
+Sphere::Vec3f Sphere::trace(const Vec3f& rayorig, const Vec3f& raydir, const std::vector<Sphere>& spheres, const int depth)
 {
 	//if (raydir.length() != 1) std::cerr << "Error " << raydir << std::endl;
 	float tnear = INFINITY;
@@ -49,7 +50,7 @@ Sphere::Vec3f Sphere::trace(const Vec3f& rayorig, const Vec3f& raydir, const std
 	if (!sphere) return Vec3f(2);
 	Vec3f surfaceColor = 0; // color of the ray/surfaceof the object intersected by the ray
 	Vec3f phit = rayorig + raydir * tnear; // point of intersection
-	Vec3f nhit = phit - sphere->center; // normal at the intersection point
+	Vec3f nhit = phit - sphere->m_center; // normal at the intersection point
 	nhit.normalize(); // normalize normal direction
 					  // If the normal and the view direction are not opposite to each other
 					  // reverse the normal direction. That also means we are inside the sphere so set
@@ -58,7 +59,7 @@ Sphere::Vec3f Sphere::trace(const Vec3f& rayorig, const Vec3f& raydir, const std
 	float bias = 1e-4; // add some bias to the point from which we will be tracing
 	bool inside = false;
 	if (raydir.dot(nhit) > 0) nhit = -nhit, inside = true;
-	if ((sphere->transparency > 0 || sphere->reflection > 0) && depth < MAX_RAY_DEPTH) {
+	if ((sphere->m_transparency > 0 || sphere->reflection > 0) && depth < MAX_RAY_DEPTH) {
 		float facingratio = -raydir.dot(nhit);
 		// change the mix value to tweak the effect
 		float fresneleffect = mix(pow(1 - facingratio, 3), 1, 0.1);
@@ -69,7 +70,7 @@ Sphere::Vec3f Sphere::trace(const Vec3f& rayorig, const Vec3f& raydir, const std
 		Vec3f reflection = trace(phit + nhit * bias, refldir, spheres, depth + 1);
 		Vec3f refraction = 0;
 		// if the sphere is also transparent compute refraction ray (transmission)
-		if (sphere->transparency) {
+		if (sphere->m_transparency) {
 			float ior = 1.1, eta = (inside) ? ior : 1 / ior; // are we inside or outside the surface?
 			float cosi = -nhit.dot(raydir);
 			float k = 1 - eta * eta * (1 - cosi * cosi);
@@ -80,15 +81,15 @@ Sphere::Vec3f Sphere::trace(const Vec3f& rayorig, const Vec3f& raydir, const std
 		// the result is a mix of reflection and refraction (if the sphere is transparent)
 		surfaceColor = (
 			reflection * fresneleffect +
-			refraction * (1 - fresneleffect) * sphere->transparency) * sphere->surfaceColor;
+			refraction * (1 - fresneleffect) * sphere->m_transparency) * sphere->m_surfaceColor;
 	}
 	else {
 		// it's a diffuse object, no need to raytrace any further
 		for (unsigned i = 0; i < spheres.size(); ++i) {
-			if (spheres[i].emissionColor.x > 0) {
+			if (spheres[i].m_emissionColor.x > 0) {
 				// this is a light
 				Vec3f transmission = 1;
-				Vec3f lightDirection = spheres[i].center - phit;
+				Vec3f lightDirection = spheres[i].m_center - phit;
 				lightDirection.normalize();
 				for (unsigned j = 0; j < spheres.size(); ++j) {
 					if (i != j) {
@@ -99,13 +100,13 @@ Sphere::Vec3f Sphere::trace(const Vec3f& rayorig, const Vec3f& raydir, const std
 						}
 					}
 				}
-				surfaceColor += sphere->surfaceColor * transmission *
-					std::max(float(0), nhit.dot(lightDirection)) * spheres[i].emissionColor;
+				surfaceColor += sphere->m_surfaceColor * transmission *
+					std::max(float(0), nhit.dot(lightDirection)) * spheres[i].m_emissionColor;
 			}
 		}
 	}
 
-	return surfaceColor + sphere->emissionColor;
+	return surfaceColor + sphere->m_emissionColor;
 }
 
 //[comment]
