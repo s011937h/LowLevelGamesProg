@@ -1,4 +1,6 @@
 #pragma once
+#include "MemoryManager.h"
+#include <ostream>
 template<typename T>
 class Vec3
 {

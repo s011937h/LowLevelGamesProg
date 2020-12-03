@@ -1,6 +1,22 @@
 #include "Spheres.h"
 
-Sphere::Sphere(const Vec3f& center, const float radius, const Vec3f& surfaceColor, const float reflection = 0, const float transparency = 0, const Vec3f& emissionColor = 0)
+void* Sphere::operator new(size_t size)
+{
+	return GetMemoryManager().Allocate(size);
+}
+
+void Sphere::operator delete(void* p, size_t size)
+{
+	GetMemoryManager().Delete(p);
+}
+
+MemoryManager& Sphere::GetMemoryManager()
+{
+	static MemoryManager instance;
+	return instance;
+}
+
+Sphere::Sphere(const Vec3f& center, const float radius, const Vec3f& surfaceColor, const float reflection, const float transparency, const Vec3f& emissionColor)
 	: m_center(center), m_radius(radius), m_radius2(radius* radius), m_surfaceColor(surfaceColor), m_emissionColor(emissionColor),	m_transparency(transparency), reflection(reflection)
 {
 
@@ -156,6 +172,9 @@ void Sphere::render(const std::vector<Sphere>& spheres, int iteration)
 
 void Sphere::BasicRender()
 {
+	Sphere* s = new Sphere(Vec3f(0.0, -10004, -20), 10000, Vec3f(0.20, 0.20, 0.20), 0, 0.0);
+
+
 	std::vector<Sphere> spheres;
 	// Vector structure for Sphere (position, radius, surface color, reflectivity, transparency, emission color)
 

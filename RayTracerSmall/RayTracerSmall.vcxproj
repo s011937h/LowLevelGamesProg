@@ -143,9 +143,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MemoryManager.cpp" />
     <ClCompile Include="Spheres.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MemoryManager.h" />
     <ClInclude Include="Spheres.h" />
     <ClInclude Include="Vector3.h" />
   </ItemGroup>

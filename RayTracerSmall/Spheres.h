@@ -1,4 +1,5 @@
 #pragma once
+#include "MemoryManager.h"
 #include "Vector3.h"
 #include <stdlib.h>
 #include <cstdio>
@@ -11,6 +12,7 @@
 #include <algorithm>
 #include <sstream>
 #include <string.h>
+#include <chrono>
 
 #if defined __linux__ || defined __APPLE__
 // "Compiled for Linux
@@ -24,6 +26,10 @@ class Sphere
 {
 typedef Vec3<float> Vec3f;
 public:
+	static void* operator new(size_t size);
+	static void operator delete(void* p, size_t size);
+	static MemoryManager& GetMemoryManager();
+
 	Vec3f m_center;                           /// position of the sphere
 	float m_radius, m_radius2;                  /// sphere radius and radius^2
 	Vec3f m_surfaceColor, m_emissionColor;      /// surface color and emission (light)
@@ -31,12 +37,12 @@ public:
 
 	Sphere(const Vec3f& center, const float radius, const Vec3f& surfaceColor, const float reflection = 0, const float transparency = 0, const Vec3f& emissionColor = 0);
 
-	float mix(const float a, const float b, const float mix);
+	static float mix(const float a, const float b, const float mix);
 	bool intersect(const Vec3f& rayorig, const Vec3f& raydir, float& t0, float& t1) const;
-	Vec3f trace(const Vec3f& rayorig, const Vec3f& raydir, const std::vector<Sphere>& spheres, const int depth);
-	void render(const std::vector<Sphere>& spheres, int iteration);
-	void BasicRender();
-	void SimpleShrinking();
-	void SmoothScaling();
+	static Vec3f trace(const Vec3f& rayorig, const Vec3f& raydir, const std::vector<Sphere>& spheres, const int depth);
+	static void render(const std::vector<Sphere>& spheres, int iteration);
+	static void BasicRender();
+	static void SimpleShrinking();
+	static void SmoothScaling();
 };
 

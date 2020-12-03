@@ -1,1 +1,140 @@
-﻿  RayTracerSmall.vcxproj -> E:\University\LowLevel\RayTracerFramework\Debug\RayTracerSmall.exe
+﻿  main.cpp
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.h(22,1): warning C4005: 'INFINITY': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\corecrt_math.h(90): message : see previous definition of 'INFINITY'
+  Spheres.cpp
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.h(22,1): warning C4005: 'INFINITY': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\corecrt_math.h(90): message : see previous definition of 'INFINITY'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(75,19): warning C4305: 'initializing': truncation from 'double' to 'float'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(81,60): warning C4305: 'argument': truncation from 'double' to 'const float'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(90,19): warning C4305: 'initializing': truncation from 'double' to 'float'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(145,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(149,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(150,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(175,79): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(181,81): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(182,72): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(183,73): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(184,72): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(200,83): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(201,74): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(202,75): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(203,74): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(208,83): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(209,74): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(210,75): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(211,74): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(215,83): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(216,74): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(217,75): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(218,74): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(222,83): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(223,74): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(224,75): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(225,74): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(241,82): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(242,79): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(243,74): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(244,73): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.cpp(245,19): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  RayTracerSmall.vcxproj -> E:\University\LowLevel\RayTracerFramework\Debug\RayTracerSmall.exe
