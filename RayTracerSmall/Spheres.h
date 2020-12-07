@@ -34,6 +34,7 @@ public:
 	float m_radius, m_radius2;                  /// sphere radius and radius^2
 	Vec3f m_surfaceColor, m_emissionColor;      /// surface color and emission (light)
 	float m_transparency, reflection;         /// surface transparency and reflectivity
+	Vec3f m_velocity;
 
 	Sphere(const Vec3f& center, const float radius, const Vec3f& surfaceColor, const float reflection = 0, const float transparency = 0, const Vec3f& emissionColor = 0);
 
@@ -44,5 +45,10 @@ public:
 	static void BasicRender();
 	static void SimpleShrinking();
 	static void SmoothScaling();
+	static void Animate();
+
+	void Update(float deltaTime);
+	void SetVelocity(Vec3f velocity);
+	void SetVelocity(float x, float y, float z);
 };
 

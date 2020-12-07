@@ -62,8 +62,8 @@ int main(int argc, char** argv)
 	// This sample only allows one choice per program execution. Feel free to improve upon this
 	srand(13);
 
-	
-	Sphere::BasicRender();
+	Sphere::Animate();
+	//Sphere::BasicRender();
 	//SimpleShrinking();
 	//SmoothScaling();
 

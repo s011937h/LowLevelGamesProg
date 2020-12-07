@@ -3,11 +3,15 @@
 void * operator new(size_t size);
 void operator delete(void * allocated);
 
+void* operator new(size_t size, const char * file, int line);
+
+
 class MemoryManager
 {
 public:
 	static MemoryManager& Get();
 	void* Allocate(size_t size);
+	void* Allocate(size_t size, const char * file, int line);
 	void Delete(void* allocated);
 	void DumpHeap();
 
@@ -16,6 +20,8 @@ public:
 		size_t size;
 		Header* next;
 		Header* previous;
+		const char* file;
+		int line;
 		int magic;
 	};
 
@@ -37,3 +43,4 @@ private:
 	Header* lastHeader;
 };
 
+#define NEW new (__FILE__, __LINE__)

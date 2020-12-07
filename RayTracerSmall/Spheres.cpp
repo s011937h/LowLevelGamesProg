@@ -19,7 +19,7 @@ MemoryManager& Sphere::GetMemoryManager()
 Sphere::Sphere(const Vec3f& center, const float radius, const Vec3f& surfaceColor, const float reflection, const float transparency, const Vec3f& emissionColor)
 	: m_center(center), m_radius(radius), m_radius2(radius* radius), m_surfaceColor(surfaceColor), m_emissionColor(emissionColor),	m_transparency(transparency), reflection(reflection)
 {
-
+	m_velocity = Vec3f(0.0, 0.0, 0.0);
 }
 
 bool Sphere::intersect(const Vec3f& rayorig, const Vec3f& raydir, float& t0, float& t1) const
@@ -139,7 +139,7 @@ void Sphere::render(const std::vector<Sphere>& spheres, int iteration)
 
 	// Recommended Production Resolution
 	//unsigned width = 1920, height = 1080;
-	Vec3f* image = new Vec3f[width * height], * pixel = image;
+	Vec3f* image = NEW Vec3f[width * height], * pixel = image;
 	float invWidth = 1 / float(width), invHeight = 1 / float(height);
 	float fov = 30, aspectratio = width / float(height);
 	float angle = tan(M_PI * 0.5 * fov / 180.);
@@ -172,9 +172,6 @@ void Sphere::render(const std::vector<Sphere>& spheres, int iteration)
 
 void Sphere::BasicRender()
 {
-	Sphere* s = new Sphere(Vec3f(0.0, -10004, -20), 10000, Vec3f(0.20, 0.20, 0.20), 0, 0.0);
-
-
 	std::vector<Sphere> spheres;
 	// Vector structure for Sphere (position, radius, surface color, reflectivity, transparency, emission color)
 
@@ -248,4 +245,39 @@ void Sphere::SmoothScaling()
 		spheres.clear();
 
 	}
+}
+
+void Sphere::Animate()
+{
+	std::vector<Sphere> spheres;
+	const float framesPerSecond = 30.0f; //will be in xml later maybe
+	const int totalFrames = 60;
+
+	spheres.push_back(Sphere(Vec3f(0.0, -10004, -20), 10000, Vec3f(0.20, 0.20, 0.20), 0, 0.0));
+	spheres[0].SetVelocity(1.0f, 1.0f, 1.0f);
+	for (int frame = 0; frame < totalFrames; frame++)
+	{
+		float currentTime = frame * framesPerSecond;
+		float elapsedTimePerFrame = 1.0f / framesPerSecond;
+
+		for (Sphere& sphere : spheres)
+		{
+			sphere.Update(elapsedTimePerFrame);
+		}
+	}
+}
+
+void Sphere::Update(float deltaTime)
+{
+	m_center += m_velocity * deltaTime;
+}
+
+void Sphere::SetVelocity(float x, float y, float z)
+{
+	SetVelocity(Vec3f(x, y, z));
+}
+
+void Sphere::SetVelocity(Vec3f velocity)
+{
+	m_velocity = velocity;
 }

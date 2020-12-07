@@ -16,6 +16,9 @@ MemoryManager::MemoryManager()
 
 MemoryManager::~MemoryManager()
 {
+	if (firstHeader)
+		DumpHeap();
+
 	assert(firstHeader == nullptr);
 	assert(lastHeader == nullptr);
 }
@@ -26,12 +29,22 @@ void* operator new(size_t size)
 }
 
 
+void* operator new(size_t size, const char * file, int line)
+{
+	return MemoryManager::Get().Allocate(size, file, line);
+}
+
 void operator delete(void* allocated)
 {
 	return MemoryManager::Get().Delete(allocated);
 }
 
 void* MemoryManager::Allocate(size_t size)
+{
+	return Allocate(size, nullptr, -1);
+}
+
+void* MemoryManager::Allocate(size_t size, const char * file, int line)
 {
 	char* allocated = reinterpret_cast<char*>(malloc(size + sizeof(Header) + sizeof(Footer)));
 	Header* header = reinterpret_cast<Header*>(allocated);
@@ -41,6 +54,9 @@ void* MemoryManager::Allocate(size_t size)
 	footer->magic = footerMagic;
 	header->next = firstHeader;
 	header->previous = nullptr;
+	header->file = file;
+	header->line = line;
+
 	if (firstHeader != nullptr)
 	{
 		firstHeader->previous = header;
@@ -90,6 +106,14 @@ void MemoryManager::DumpHeap()
 {
 	for (Header* header = firstHeader; header != nullptr; header = header->next)
 	{
-		printf("Object size: %zx %x\n", header->size, header->magic);
+		if (header->file)
+		{
+			printf("%s(%i): Object size: %zx %x\n", header->file, header->line, header->size, header->magic);
+		}
+		else
+		{
+			printf("Object size: %zx %x\n", header->size, header->magic);
+		}
+		
 	}
 }
