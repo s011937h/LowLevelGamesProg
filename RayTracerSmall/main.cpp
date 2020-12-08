@@ -39,6 +39,7 @@ using namespace std;
 
 #include "Spheres.h"
 #include "Vector3.h"
+#include "Scene.h"
 
 #if defined __linux__ || defined __APPLE__
 // "Compiled for Linux
@@ -62,7 +63,7 @@ int main(int argc, char** argv)
 	// This sample only allows one choice per program execution. Feel free to improve upon this
 	srand(13);
 
-	Sphere::Animate();
+	Scene::Animate();
 	//Sphere::BasicRender();
 	//SimpleShrinking();
 	//SmoothScaling();

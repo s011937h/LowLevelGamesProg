@@ -1,6 +1,7 @@
 #pragma once
 #include "MemoryManager.h"
 #include "Vector3.h"
+#include "Helpers.h"
 #include <stdlib.h>
 #include <cstdio>
 #include <cmath>
@@ -38,14 +39,9 @@ public:
 
 	Sphere(const Vec3f& center, const float radius, const Vec3f& surfaceColor, const float reflection = 0, const float transparency = 0, const Vec3f& emissionColor = 0);
 
-	static float mix(const float a, const float b, const float mix);
 	bool intersect(const Vec3f& rayorig, const Vec3f& raydir, float& t0, float& t1) const;
 	static Vec3f trace(const Vec3f& rayorig, const Vec3f& raydir, const std::vector<Sphere>& spheres, const int depth);
 	static void render(const std::vector<Sphere>& spheres, int iteration);
-	static void BasicRender();
-	static void SimpleShrinking();
-	static void SmoothScaling();
-	static void Animate();
 
 	void Update(float deltaTime);
 	void SetVelocity(Vec3f velocity);

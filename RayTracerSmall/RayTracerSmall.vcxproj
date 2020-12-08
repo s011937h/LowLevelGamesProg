@@ -144,10 +144,13 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MemoryManager.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Spheres.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Helpers.h" />
     <ClInclude Include="MemoryManager.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Spheres.h" />
     <ClInclude Include="Vector3.h" />
   </ItemGroup>

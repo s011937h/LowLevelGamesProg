@@ -4,7 +4,7 @@ void * operator new(size_t size);
 void operator delete(void * allocated);
 
 void* operator new(size_t size, const char * file, int line);
-
+#define NEW new (__FILE__, __LINE__)
 
 class MemoryManager
 {
@@ -42,5 +42,3 @@ private:
 	Header* firstHeader;
 	Header* lastHeader;
 };
-
-#define NEW new (__FILE__, __LINE__)

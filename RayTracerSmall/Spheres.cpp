@@ -36,16 +36,6 @@ bool Sphere::intersect(const Vec3f& rayorig, const Vec3f& raydir, float& t0, flo
 	return true;
 }
 
-//[comment]
-// This variable controls the maximum recursion depth
-//[/comment]
-#define MAX_RAY_DEPTH 5
-
-float Sphere::mix(const float a, const float b, const float mix)
-{
-	return b * mix + a * (1 - mix);
-}
-
 Sphere::Vec3f Sphere::trace(const Vec3f& rayorig, const Vec3f& raydir, const std::vector<Sphere>& spheres, const int depth)
 {
 	//if (raydir.length() != 1) std::cerr << "Error " << raydir << std::endl;
@@ -78,7 +68,7 @@ Sphere::Vec3f Sphere::trace(const Vec3f& rayorig, const Vec3f& raydir, const std
 	if ((sphere->m_transparency > 0 || sphere->reflection > 0) && depth < MAX_RAY_DEPTH) {
 		float facingratio = -raydir.dot(nhit);
 		// change the mix value to tweak the effect
-		float fresneleffect = mix(pow(1 - facingratio, 3), 1, 0.1);
+		float fresneleffect = Helpers::mix(pow(1 - facingratio, 3), 1, 0.1);
 		// compute reflection direction (not need to normalize because all vectors
 		// are already normalized)
 		Vec3f refldir = raydir - nhit * 2 * raydir.dot(nhit);
@@ -170,102 +160,6 @@ void Sphere::render(const std::vector<Sphere>& spheres, int iteration)
 	delete[] image;
 }
 
-void Sphere::BasicRender()
-{
-	std::vector<Sphere> spheres;
-	// Vector structure for Sphere (position, radius, surface color, reflectivity, transparency, emission color)
-
-	spheres.push_back(Sphere(Vec3f(0.0, -10004, -20), 10000, Vec3f(0.20, 0.20, 0.20), 0, 0.0));
-	spheres.push_back(Sphere(Vec3f(0.0, 0, -20), 4, Vec3f(1.00, 0.32, 0.36), 1, 0.5)); // The radius paramter is the value we will change
-	spheres.push_back(Sphere(Vec3f(5.0, -1, -15), 2, Vec3f(0.90, 0.76, 0.46), 1, 0.0));
-	spheres.push_back(Sphere(Vec3f(5.0, 0, -25), 3, Vec3f(0.65, 0.77, 0.97), 1, 0.0));
-
-	// This creates a file, titled 1.ppm in the current working directory
-	render(spheres, 1);
-
-}
-
-void Sphere::SimpleShrinking()
-{
-	std::vector<Sphere> spheres;
-	// Vector structure for Sphere (position, radius, surface color, reflectivity, transparency, emission color)
-
-	for (int i = 0; i < 4; i++)
-	{
-		if (i == 0)
-		{
-			spheres.push_back(Sphere(Vec3f(0.0, -10004, -20), 10000, Vec3f(0.20, 0.20, 0.20), 0, 0.0));
-			spheres.push_back(Sphere(Vec3f(0.0, 0, -20), 4, Vec3f(1.00, 0.32, 0.36), 1, 0.5)); // The radius paramter is the value we will change
-			spheres.push_back(Sphere(Vec3f(5.0, -1, -15), 2, Vec3f(0.90, 0.76, 0.46), 1, 0.0));
-			spheres.push_back(Sphere(Vec3f(5.0, 0, -25), 3, Vec3f(0.65, 0.77, 0.97), 1, 0.0));
-
-		}
-		else if (i == 1)
-		{
-			spheres.push_back(Sphere(Vec3f(0.0, -10004, -20), 10000, Vec3f(0.20, 0.20, 0.20), 0, 0.0));
-			spheres.push_back(Sphere(Vec3f(0.0, 0, -20), 3, Vec3f(1.00, 0.32, 0.36), 1, 0.5)); // Radius--
-			spheres.push_back(Sphere(Vec3f(5.0, -1, -15), 2, Vec3f(0.90, 0.76, 0.46), 1, 0.0));
-			spheres.push_back(Sphere(Vec3f(5.0, 0, -25), 3, Vec3f(0.65, 0.77, 0.97), 1, 0.0));
-		}
-		else if (i == 2)
-		{
-			spheres.push_back(Sphere(Vec3f(0.0, -10004, -20), 10000, Vec3f(0.20, 0.20, 0.20), 0, 0.0));
-			spheres.push_back(Sphere(Vec3f(0.0, 0, -20), 2, Vec3f(1.00, 0.32, 0.36), 1, 0.5)); // Radius--
-			spheres.push_back(Sphere(Vec3f(5.0, -1, -15), 2, Vec3f(0.90, 0.76, 0.46), 1, 0.0));
-			spheres.push_back(Sphere(Vec3f(5.0, 0, -25), 3, Vec3f(0.65, 0.77, 0.97), 1, 0.0));
-		}
-		else if (i == 3)
-		{
-			spheres.push_back(Sphere(Vec3f(0.0, -10004, -20), 10000, Vec3f(0.20, 0.20, 0.20), 0, 0.0));
-			spheres.push_back(Sphere(Vec3f(0.0, 0, -20), 1, Vec3f(1.00, 0.32, 0.36), 1, 0.5)); // Radius--
-			spheres.push_back(Sphere(Vec3f(5.0, -1, -15), 2, Vec3f(0.90, 0.76, 0.46), 1, 0.0));
-			spheres.push_back(Sphere(Vec3f(5.0, 0, -25), 3, Vec3f(0.65, 0.77, 0.97), 1, 0.0));
-		}
-
-		render(spheres, i);
-		// Dont forget to clear the Vector holding the spheres.
-		spheres.clear();
-	}
-}
-
-void Sphere::SmoothScaling()
-{
-	std::vector<Sphere> spheres;
-	// Vector structure for Sphere (position, radius, surface color, reflectivity, transparency, emission color)
-
-	for (float r = 0; r <= 100; r++)
-	{
-		spheres.push_back(Sphere(Vec3f(0.0, -10004, -20), 10000, Vec3f(0.20, 0.20, 0.20), 0, 0.0));
-		spheres.push_back(Sphere(Vec3f(0.0, 0, -20), r / 100, Vec3f(1.00, 0.32, 0.36), 1, 0.5)); // Radius++ change here
-		spheres.push_back(Sphere(Vec3f(5.0, -1, -15), 2, Vec3f(0.90, 0.76, 0.46), 1, 0.0));
-		spheres.push_back(Sphere(Vec3f(5.0, 0, -25), 3, Vec3f(0.65, 0.77, 0.97), 1, 0.0));
-		render(spheres, r);
-		std::cout << "Rendered and saved spheres" << r << ".ppm" << std::endl;
-		// Dont forget to clear the Vector holding the spheres.
-		spheres.clear();
-
-	}
-}
-
-void Sphere::Animate()
-{
-	std::vector<Sphere> spheres;
-	const float framesPerSecond = 30.0f; //will be in xml later maybe
-	const int totalFrames = 60;
-
-	spheres.push_back(Sphere(Vec3f(0.0, -10004, -20), 10000, Vec3f(0.20, 0.20, 0.20), 0, 0.0));
-	spheres[0].SetVelocity(1.0f, 1.0f, 1.0f);
-	for (int frame = 0; frame < totalFrames; frame++)
-	{
-		float currentTime = frame * framesPerSecond;
-		float elapsedTimePerFrame = 1.0f / framesPerSecond;
-
-		for (Sphere& sphere : spheres)
-		{
-			sphere.Update(elapsedTimePerFrame);
-		}
-	}
-}
 
 void Sphere::Update(float deltaTime)
 {
