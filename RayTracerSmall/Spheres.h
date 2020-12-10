@@ -31,6 +31,7 @@ public:
 	static void operator delete(void* p, size_t size);
 	static MemoryManager& GetMemoryManager();
 
+	//TODO: Make all these private & add getters and setters for them and make code use getters and setters
 	Vec3f m_center;                           /// position of the sphere
 	float m_radius, m_radius2;                  /// sphere radius and radius^2
 	Vec3f m_surfaceColor, m_emissionColor;      /// surface color and emission (light)
@@ -40,11 +41,10 @@ public:
 	Sphere(const Vec3f& center, const float radius, const Vec3f& surfaceColor, const float reflection = 0, const float transparency = 0, const Vec3f& emissionColor = 0);
 
 	bool intersect(const Vec3f& rayorig, const Vec3f& raydir, float& t0, float& t1) const;
-	static Vec3f trace(const Vec3f& rayorig, const Vec3f& raydir, const std::vector<Sphere>& spheres, const int depth);
-	static void render(const std::vector<Sphere>& spheres, int iteration);
 
 	void Update(float deltaTime);
 	void SetVelocity(Vec3f velocity);
 	void SetVelocity(float x, float y, float z);
+	void SetColour();
 };
 
