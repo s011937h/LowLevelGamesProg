@@ -46,6 +46,8 @@ void* MemoryManager::Allocate(size_t size)
 
 void* MemoryManager::Allocate(size_t size, const char * file, int line)
 {
+	std::lock_guard<std::mutex> lock(m_AllocationMutex);
+
 	char* allocated = reinterpret_cast<char*>(malloc(size + sizeof(Header) + sizeof(Footer)));
 	Header* header = reinterpret_cast<Header*>(allocated);
 	Footer* footer = reinterpret_cast<Footer*>(allocated + sizeof(Header) + size);
@@ -71,6 +73,8 @@ void* MemoryManager::Allocate(size_t size, const char * file, int line)
 
 void MemoryManager::Delete(void* allocated)
 {
+	std::lock_guard<std::mutex> lock(m_AllocationMutex);
+
 	char* data = reinterpret_cast<char*>(allocated) - sizeof(Header);
 	Header* header = reinterpret_cast<Header*>(data);
 	assert(header->magic == headerMagic);
@@ -104,6 +108,13 @@ void MemoryManager::Delete(void* allocated)
 
 void MemoryManager::DumpHeap()
 {
+	std::lock_guard<std::mutex> lock(m_AllocationMutex);
+
+	if (firstHeader)
+	{
+		printf("Warning : objects leaked:\n");
+	}
+
 	for (Header* header = firstHeader; header != nullptr; header = header->next)
 	{
 		if (header->file)

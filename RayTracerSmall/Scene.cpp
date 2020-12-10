@@ -1,11 +1,12 @@
 #include "Scene.h"
 
+
 void Scene::BasicRender()
 {
 	Scene scene;
 	// Vector structure for Sphere (position, radius, surface color, reflectivity, transparency, emission color)
 
-	scene.AddSphere(Vec3f(0.0, -10004, -20), 10000, Vec3f(0.20, 0.20, 0.20), 0, 0.0);
+	scene.AddSphere(Vec3f(0.0, -10004, -20), 10000, Vec3f(0.20f, 0.20f, 0.20f), 0, 0.0f);
 	scene.AddSphere(Vec3f(0.0, 0, -20), 4, Vec3f(1.00, 0.32, 0.36), 1, 0.5); // The radius paramter is the value we will change
 	scene.AddSphere(Vec3f(5.0, -1, -15), 2, Vec3f(0.90, 0.76, 0.46), 1, 0.0);
 	scene.AddSphere(Vec3f(5.0, 0, -25), 3, Vec3f(0.65, 0.77, 0.97), 1, 0.0);
@@ -83,7 +84,7 @@ void Scene::Animate()
 	const float framesPerSecond = 30.0f; //will be in xml later maybe
 	const int totalFrames = 60;
 
-	scene.AddSphere(Vec3f(0.0, -10004, -20), 10000, Vec3f(0.20, 0.20, 0.20), 0, 0.0);
+	scene.AddSphere(Vec3f(5.0f, -1, 0), 2, Vec3f(1.0f, 0.82f, 0.863f), 1, 0.0f);
 	scene.GetSphere(0).SetVelocity(1.0f, 1.0f, 1.0f);
 	for (int frame = 0; frame < totalFrames; frame++)
 	{
@@ -91,11 +92,16 @@ void Scene::Animate()
 		float elapsedTimePerFrame = 1.0f / framesPerSecond;
 
 		scene.Update(elapsedTimePerFrame);
+		scene.RenderThreaded(frame, 4); //experiment with number of threads
 	}
+
+	scene.ClearSpheres();
 }
 
-Vec3f Scene::Trace(const Vec3f& rayorig, const Vec3f& raydir, const int depth)
+Vec3f Scene::Trace(const Vec3f& rayorig, const Vec3f& raydir, const int depth) const
 {
+	std::shared_lock<std::shared_mutex> lock(m_Mutex);
+
 	//if (raydir.length() != 1) std::cerr << "Error " << raydir << std::endl;
 	float tnear = INFINITY;
 	const Sphere* sphere = NULL;
@@ -178,8 +184,10 @@ Vec3f Scene::Trace(const Vec3f& rayorig, const Vec3f& raydir, const int depth)
 // trace it and return a color. If the ray hits a sphere, we return the color of the
 // sphere at the intersection point, else we return the background color.
 //[/comment]
-void Scene::Render(int iteration)
+void Scene::Render(int iteration) const
 {
+	std::shared_lock<std::shared_mutex> lock(m_Mutex);
+
 	// quick and dirty
 	unsigned width = 640, height = 480;
 	// Recommended Testing Resolution
@@ -192,14 +200,8 @@ void Scene::Render(int iteration)
 	float fov = 30, aspectratio = width / float(height);
 	float angle = tan(M_PI * 0.5 * fov / 180.);
 	// Trace rays
-	for (unsigned y = 0; y < height; ++y) {
-		for (unsigned x = 0; x < width; ++x, ++pixel) {
-			float xx = (2 * ((x + 0.5) * invWidth) - 1) * angle * aspectratio;
-			float yy = (1 - 2 * ((y + 0.5) * invHeight)) * angle;
-			Vec3f raydir(xx, yy, -1);
-			raydir.normalize();
-			*pixel = Trace(Vec3f(0), raydir, 0);
-		}
+	for (unsigned y = 0; y < height; ++y, pixel+=width) {
+		TraceRow(y, invWidth, invHeight, angle, aspectratio, pixel, width);
 	}
 	// Save result to a PPM image (keep these flags if you compile under Windows)
 	std::stringstream ss;
@@ -218,30 +220,122 @@ void Scene::Render(int iteration)
 	delete[] image;
 }
 
+void Scene::RenderThreaded(int iteration, int numThreads) const
+{
+	std::shared_lock<std::shared_mutex> lock(m_Mutex);
+	
+	// quick and dirty
+	unsigned width = 640, height = 480;
+	// Recommended Testing Resolution
+	//unsigned width = 640, height = 480;
+
+	// Recommended Production Resolution
+	//unsigned width = 1920, height = 1080;
+	Vec3f* image = NEW Vec3f[width * height];
+	float invWidth = 1 / float(width), invHeight = 1 / float(height);
+	float fov = 30, aspectratio = width / float(height);
+	float angle = tan(M_PI * 0.5 * fov / 180.);
+
+	int rowsPerThread = height / numThreads;
+
+	// Trace rays
+	std::vector<std::thread> workerThreads;
+	//dispatch workers
+	Vec3f* threadStartRow = image;
+	//for (unsigned y = 0; y < height; ++y, threadStartRow += width * rowsPerThread) 
+	for (int thread = 0; thread < numThreads; ++thread, threadStartRow += width * rowsPerThread)
+	{
+		workerThreads.push_back(std::thread([this, thread, invWidth, invHeight, angle, aspectratio, threadStartRow, width, height, rowsPerThread]()
+		{
+			Vec3f* row = threadStartRow;
+			for (int y = thread * rowsPerThread;
+				y < height && y < (thread + 1) * rowsPerThread;
+				++y, row += width) {
+				TraceRow(y, invWidth, invHeight, angle, aspectratio, row, width);
+			}
+		}));
+	}
+
+	// join workers
+	for (auto& thread : workerThreads)
+	{
+		thread.join();
+	}
+
+	// Save result to a PPM image (keep these flags if you compile under Windows)
+	std::stringstream ss;
+	ss << "./spheres" << iteration << ".ppm";
+	std::string tempString = ss.str();
+	char* filename = (char*)tempString.c_str();
+
+	std::ofstream ofs(filename, std::ios::out | std::ios::binary);
+	ofs << "P6\n" << width << " " << height << "\n255\n";
+	for (unsigned i = 0; i < width * height; ++i) {
+		ofs << (unsigned char)(std::min(float(1), image[i].x) * 255) <<
+			(unsigned char)(std::min(float(1), image[i].y) * 255) <<
+			(unsigned char)(std::min(float(1), image[i].z) * 255);
+	}
+	ofs.close();
+	delete[] image;
+}
+
+void Scene::TracePixel(int x, int y,float invWidth, float invHeight, float angle, float aspectratio, Vec3f* pixel) const
+{
+	float xx = (2 * ((x + 0.5) * invWidth) - 1) * angle * aspectratio;
+	float yy = (1 - 2 * ((y + 0.5) * invHeight)) * angle;
+	Vec3f raydir(xx, yy, -1);
+	raydir.normalize();
+	*pixel = Trace(Vec3f(0), raydir, 0);
+}
+
+void Scene::TraceRow(int y, float invWidth, float invHeight, float angle, float aspectratio, Vec3f* row, int width) const
+{
+	Vec3f* pixel = row;
+	for (unsigned x = 0; x < width; ++x, ++pixel) {
+		TracePixel(x, y, invWidth, invHeight, angle, aspectratio, pixel);
+	}
+}
+
 void Scene::AddSphere(const Vec3f& center, const float radius, const Vec3f& surfaceColor, const float reflection, const float transparency, const Vec3f& emissionColor)
 {
-	m_Spheres.push_back(std::make_unique<Sphere>(center, radius, surfaceColor, reflection, transparency, emissionColor));
+	// Lock for read-write
+	std::unique_lock<std::shared_mutex> lock(m_Mutex);
+
+	SpherePtr newSphere;
+	newSphere.reset(NEW Sphere(center, radius, surfaceColor, reflection, transparency, emissionColor));
+	m_Spheres.push_back(std::move(newSphere));
 }
 
 void Scene::ClearSpheres()
 {
+	// Lock for read-write
+	std::unique_lock<std::shared_mutex> lock(m_Mutex);
+
 	m_Spheres.clear();
 }
 
 void Scene::Update(float timeElapsed)
 {
+	// Lock for read-write
+	std::unique_lock<std::shared_mutex> lock(m_Mutex);
+
 	for (SpherePtr& sphere : m_Spheres)
 	{
 		sphere->Update(timeElapsed);
 	}
 }
 
-Sphere& Scene::GetSphere(int index)
+Sphere& Scene::GetSphere(int index) const
 {
+	// lock for read-only
+	std::shared_lock<std::shared_mutex> lock(m_Mutex);
+
 	return *m_Spheres[index];
 }
 
-int Scene::GetSphereCount()
+int Scene::GetSphereCount() const
 {
-	return m_Spheres.size();
+	std::shared_lock<std::shared_mutex> lock(m_Mutex);
+
+	return m_Spheres.size();	
 }

@@ -5,6 +5,11 @@ void* Sphere::operator new(size_t size)
 	return GetMemoryManager().Allocate(size);
 }
 
+void* Sphere::operator new(size_t size, const char* file, int line)
+{
+	return GetMemoryManager().Allocate(size, file, line);
+}
+
 void Sphere::operator delete(void* p, size_t size)
 {
 	GetMemoryManager().Delete(p);

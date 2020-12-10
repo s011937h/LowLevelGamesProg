@@ -1,5 +1,7 @@
 #pragma once
 
+#include <mutex>
+
 void * operator new(size_t size);
 void operator delete(void * allocated);
 
@@ -41,4 +43,5 @@ public:
 private:
 	Header* firstHeader;
 	Header* lastHeader;
+	std::mutex m_AllocationMutex;
 };

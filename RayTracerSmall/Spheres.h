@@ -28,10 +28,11 @@ class Sphere
 typedef Vec3<float> Vec3f;
 public:
 	static void* operator new(size_t size);
+	static void* operator new(size_t size, const char* file, int line);
 	static void operator delete(void* p, size_t size);
 	static MemoryManager& GetMemoryManager();
 
-	//TODO: Make all these private & add getters and setters for them and make code use getters and setters
+	//TODO: Make all these private & add getters and setters for them and make code use getters and setters (all getters const)
 	Vec3f m_center;                           /// position of the sphere
 	float m_radius, m_radius2;                  /// sphere radius and radius^2
 	Vec3f m_surfaceColor, m_emissionColor;      /// surface color and emission (light)

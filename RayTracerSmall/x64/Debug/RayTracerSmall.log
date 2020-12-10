@@ -1,146 +1,136 @@
 ﻿  Scene.cpp
 E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.h(23,1): warning C4005: 'INFINITY': macro redefinition
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\corecrt_math.h(90): message : see previous definition of 'INFINITY'
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(8,72): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(10,63): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(9,63): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(11,64): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(10,64): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(12,63): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(11,63): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(28,74): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(27,74): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(29,65): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(28,65): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(30,66): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(29,66): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(31,65): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(30,65): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(36,74): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(35,74): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(37,65): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(36,65): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(38,66): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(37,66): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(39,65): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(38,65): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(43,74): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(42,74): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(44,65): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(43,65): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(45,66): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(44,66): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(46,65): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(45,65): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(50,74): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(49,74): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(51,65): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(50,65): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(52,66): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(51,66): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(53,65): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(52,65): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(69,73): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(68,73): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(70,70): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(69,70): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(71,65): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(70,65): warning C4305: 'argument': truncation from 'double' to 'T'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(72,64): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(71,64): warning C4305: 'argument': truncation from 'double' to 'T'
-          with
-          [
-              T=float
-          ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(72,16): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(86,72): warning C4305: 'argument': truncation from 'double' to 'T'
-          with
-          [
-              T=float
-          ]
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(123,19): warning C4305: 'initializing': truncation from 'double' to 'float'
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(129,69): warning C4305: 'argument': truncation from 'double' to 'const float'
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(138,19): warning C4305: 'initializing': truncation from 'double' to 'float'
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(190,42): warning C4291: 'void *operator new(size_t,const char *,int)': no matching operator delete found; memory will not be freed if initialization throws an exception
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\MemoryManager.h(6): message : see declaration of 'operator new'
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(193,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(197,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(198,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(246,25): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-  Spheres.cpp
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.h(23,1): warning C4005: 'INFINITY': macro redefinition
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\corecrt_math.h(90): message : see previous definition of 'INFINITY'
-  main.cpp
-E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.h(23,1): warning C4005: 'INFINITY': macro redefinition
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\corecrt_math.h(90): message : see previous definition of 'INFINITY'
-  Generating Code...
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(73,16): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(129,19): warning C4305: 'initializing': truncation from 'double' to 'float'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(135,69): warning C4305: 'argument': truncation from 'double' to 'const float'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(144,19): warning C4305: 'initializing': truncation from 'double' to 'float'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(198,42): warning C4291: 'void *operator new(size_t,const char *,int)': no matching operator delete found; memory will not be freed if initialization throws an exception
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\MemoryManager.h(8): message : see declaration of 'operator new'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(201,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(234,42): warning C4291: 'void *operator new(size_t,const char *,int)': no matching operator delete found; memory will not be freed if initialization throws an exception
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\MemoryManager.h(8): message : see declaration of 'operator new'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(237,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(252,7): warning C4018: '<': signed/unsigned mismatch
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(284,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(285,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(294,25): warning C4018: '<': signed/unsigned mismatch
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(305,98): warning C4291: 'void *Sphere::operator new(size_t,const char *,int)': no matching operator delete found; memory will not be freed if initialization throws an exception
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Spheres.h(31): message : see declaration of 'Sphere::operator new'
+E:\University\LowLevel\RayTracerFramework\RayTracerSmall\Scene.cpp(340,25): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
   RayTracerSmall.vcxproj -> E:\University\LowLevel\RayTracerFramework\x64\Debug\RayTracerSmall.exe
