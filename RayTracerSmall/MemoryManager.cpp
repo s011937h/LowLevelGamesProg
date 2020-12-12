@@ -71,6 +71,12 @@ void* MemoryManager::Allocate(size_t size, const char * file, int line)
 	return allocated + sizeof(Header);
 }
 
+/*******************************************************************************************
+MARKING SCHEME: Memory Management
+
+DESCRIPTION: Error checking for new and delete, walking the heap
+
+*******************************************************************************************/
 void MemoryManager::Delete(void* allocated)
 {
 	std::lock_guard<std::mutex> lock(m_AllocationMutex);

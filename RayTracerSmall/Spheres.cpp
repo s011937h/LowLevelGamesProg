@@ -1,5 +1,12 @@
 #include "Spheres.h"
 
+/*******************************************************************************************
+MARKING SCHEME: Memory Management
+
+DESCRIPTION: Basic use of overridden new and delete, use of class specific memory allocators
+
+*******************************************************************************************/
+
 void* Sphere::operator new(size_t size)
 {
 	return GetMemoryManager().Allocate(size);

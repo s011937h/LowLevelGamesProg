@@ -78,6 +78,12 @@ void Scene::SmoothScaling()
 	}
 }
 
+/*******************************************************************************************
+MARKING SCHEME: Expansion of framework
+
+DESCRIPTION: Animate the spheres on the x, y and z axis continually..., an appropriate interface for setting up animations
+
+*******************************************************************************************/
 void Scene::Animate()
 {
 	Scene scene;
@@ -221,6 +227,12 @@ void Scene::Render(int iteration) const
 	delete[] image;
 }
 
+/*******************************************************************************************
+MARKING SCHEME: Optimisation of the framework
+
+DESCRIPTION: Threading optimisation, FileIO optimisation
+
+*******************************************************************************************/
 void Scene::RenderThreaded(int iteration, int numThreads) const
 {
 	std::shared_lock<std::shared_mutex> lock(m_Mutex);
@@ -311,6 +323,12 @@ void Scene::TraceRow(int y, float invWidth, float invHeight, float angle, float 
 	}
 }
 
+/*******************************************************************************************
+MARKING SCHEME: Expansion of framework
+
+DESCRIPTION: An appropriate interface for adding and removing spheres
+
+*******************************************************************************************/
 void Scene::AddSphere(const Vec3f& center, const float radius, const Vec3f& surfaceColor, const float reflection, const float transparency, const Vec3f& emissionColor)
 {
 	// Lock for read-write

@@ -56,6 +56,13 @@ using namespace std;
 //[/comment]
 int main(int argc, char** argv)
 {
+	/*******************************************************************************************
+	MARKING SCHEME: Optimisation of the framework
+
+	DESCRIPTION: Add C++ Chrono
+
+	*******************************************************************************************/
+
 	{ //add extra scope to make sure memory isn't used
 	auto start = chrono::steady_clock::now();
 
