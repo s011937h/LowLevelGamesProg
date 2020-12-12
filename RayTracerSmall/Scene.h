@@ -28,6 +28,7 @@ private:
 
 	void TracePixel(int x, int y, float invWidth, float invHeight, float angle, float aspectratio, Vec3f* pixel) const;
 	void TraceRow(int y, float invWidth, float invHeight, float angle, float aspectratio, Vec3f* row, int width) const;
+	void SaveToPPM(int iteration, int width, int height, Vec3f* image) const;
 
 	// Read-write lock to protect m_Spheres
 	mutable std::shared_mutex m_Mutex;

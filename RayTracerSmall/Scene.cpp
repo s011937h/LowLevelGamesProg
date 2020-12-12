@@ -6,10 +6,10 @@ void Scene::BasicRender()
 	Scene scene;
 	// Vector structure for Sphere (position, radius, surface color, reflectivity, transparency, emission color)
 
-	scene.AddSphere(Vec3f(0.0, -10004, -20), 10000, Vec3f(0.20f, 0.20f, 0.20f), 0, 0.0f);
-	scene.AddSphere(Vec3f(0.0, 0, -20), 4, Vec3f(1.00, 0.32, 0.36), 1, 0.5); // The radius paramter is the value we will change
-	scene.AddSphere(Vec3f(5.0, -1, -15), 2, Vec3f(0.90, 0.76, 0.46), 1, 0.0);
-	scene.AddSphere(Vec3f(5.0, 0, -25), 3, Vec3f(0.65, 0.77, 0.97), 1, 0.0);
+	scene.AddSphere(Vec3f(0.0f, -10004, -20), 10000, Vec3f(0.20f, 0.20f, 0.20f), 0, 0.0f);
+	scene.AddSphere(Vec3f(0.0f, 0, -20), 4, Vec3f(1.00f, 0.32f, 0.36f), 1, 0.5f); // The radius paramter is the value we will change
+	scene.AddSphere(Vec3f(5.0f, -1, -15), 2, Vec3f(0.90f, 0.76f, 0.46f), 1, 0.0f);
+	scene.AddSphere(Vec3f(5.0f, 0, -25), 3, Vec3f(0.65f, 0.77f, 0.97f), 1, 0.0f);
 
 	// This creates a file, titled 1.ppm in the current working directory
 	scene.Render(1);
@@ -25,32 +25,32 @@ void Scene::SimpleShrinking()
 	{
 		if (i == 0)
 		{
-			scene.AddSphere(Vec3f(0.0, -10004, -20), 10000, Vec3f(0.20, 0.20, 0.20), 0, 0.0);
-			scene.AddSphere(Vec3f(0.0, 0, -20), 4, Vec3f(1.00, 0.32, 0.36), 1, 0.5); // The radius paramter is the value we will change
-			scene.AddSphere(Vec3f(5.0, -1, -15), 2, Vec3f(0.90, 0.76, 0.46), 1, 0.0);
-			scene.AddSphere(Vec3f(5.0, 0, -25), 3, Vec3f(0.65, 0.77, 0.97), 1, 0.0);
+			scene.AddSphere(Vec3f(0.0f, -10004, -20), 10000, Vec3f(0.20f, 0.20f, 0.20f), 0, 0.0f);
+			scene.AddSphere(Vec3f(0.0f, 0, -20), 4, Vec3f(1.00f, 0.32f, 0.36f), 1, 0.5f); // The radius paramter is the value we will change
+			scene.AddSphere(Vec3f(5.0f, -1, -15), 2, Vec3f(0.90f, 0.76f, 0.46f), 1, 0.0f);
+			scene.AddSphere(Vec3f(5.0f, 0, -25), 3, Vec3f(0.65f, 0.77f, 0.97f), 1, 0.0f);
 
 		}
 		else if (i == 1)
 		{
-			scene.AddSphere(Vec3f(0.0, -10004, -20), 10000, Vec3f(0.20, 0.20, 0.20), 0, 0.0);
-			scene.AddSphere(Vec3f(0.0, 0, -20), 3, Vec3f(1.00, 0.32, 0.36), 1, 0.5); // Radius--
-			scene.AddSphere(Vec3f(5.0, -1, -15), 2, Vec3f(0.90, 0.76, 0.46), 1, 0.0);
-			scene.AddSphere(Vec3f(5.0, 0, -25), 3, Vec3f(0.65, 0.77, 0.97), 1, 0.0);
+			scene.AddSphere(Vec3f(0.0f, -10004, -20), 10000, Vec3f(0.20f, 0.20f, 0.20f), 0, 0.0f);
+			scene.AddSphere(Vec3f(0.0f, 0, -20), 3, Vec3f(1.00f, 0.32f, 0.36f), 1, 0.5f); // Radius--
+			scene.AddSphere(Vec3f(5.0f, -1, -15), 2, Vec3f(0.90f, 0.76f, 0.46f), 1, 0.0f);
+			scene.AddSphere(Vec3f(5.0f, 0, -25), 3, Vec3f(0.65f, 0.77f, 0.97f), 1, 0.0f);
 		}
 		else if (i == 2)
 		{
-			scene.AddSphere(Vec3f(0.0, -10004, -20), 10000, Vec3f(0.20, 0.20, 0.20), 0, 0.0);
-			scene.AddSphere(Vec3f(0.0, 0, -20), 2, Vec3f(1.00, 0.32, 0.36), 1, 0.5); // Radius--
-			scene.AddSphere(Vec3f(5.0, -1, -15), 2, Vec3f(0.90, 0.76, 0.46), 1, 0.0);
-			scene.AddSphere(Vec3f(5.0, 0, -25), 3, Vec3f(0.65, 0.77, 0.97), 1, 0.0);
+			scene.AddSphere(Vec3f(0.0f, -10004, -20), 10000, Vec3f(0.20f, 0.20f, 0.20f), 0, 0.0f);
+			scene.AddSphere(Vec3f(0.0f, 0, -20), 2, Vec3f(1.00f, 0.32f, 0.36f), 1, 0.5f); // Radius--
+			scene.AddSphere(Vec3f(5.0f, -1, -15), 2, Vec3f(0.90f, 0.76f, 0.46f), 1, 0.0f);
+			scene.AddSphere(Vec3f(5.0f, 0, -25), 3, Vec3f(0.65f, 0.77f, 0.97f), 1, 0.0f);
 		}
 		else if (i == 3)
 		{
-			scene.AddSphere(Vec3f(0.0, -10004, -20), 10000, Vec3f(0.20, 0.20, 0.20), 0, 0.0);
-			scene.AddSphere(Vec3f(0.0, 0, -20), 1, Vec3f(1.00, 0.32, 0.36), 1, 0.5); // Radius--
-			scene.AddSphere(Vec3f(5.0, -1, -15), 2, Vec3f(0.90, 0.76, 0.46), 1, 0.0);
-			scene.AddSphere(Vec3f(5.0, 0, -25), 3, Vec3f(0.65, 0.77, 0.97), 1, 0.0);
+			scene.AddSphere(Vec3f(0.0f, -10004, -20), 10000, Vec3f(0.20f, 0.20f, 0.20f), 0, 0.0f);
+			scene.AddSphere(Vec3f(0.0f, 0, -20), 1, Vec3f(1.00f, 0.32f, 0.36f), 1, 0.5f); // Radius--
+			scene.AddSphere(Vec3f(5.0f, -1, -15), 2, Vec3f(0.90f, 0.76f, 0.46f), 1, 0.0f);
+			scene.AddSphere(Vec3f(5.0f, 0, -25), 3, Vec3f(0.65f, 0.77f, 0.97f), 1, 0.0f);
 		}
 
 		scene.Render(i);
@@ -66,10 +66,10 @@ void Scene::SmoothScaling()
 
 	for (float r = 0; r <= 100; r++)
 	{
-		scene.AddSphere(Vec3f(0.0, -10004, -20), 10000, Vec3f(0.20, 0.20, 0.20), 0, 0.0);
-		scene.AddSphere(Vec3f(0.0, 0, -20), r / 100, Vec3f(1.00, 0.32, 0.36), 1, 0.5); // Radius++ change here
-		scene.AddSphere(Vec3f(5.0, -1, -15), 2, Vec3f(0.90, 0.76, 0.46), 1, 0.0);
-		scene.AddSphere(Vec3f(5.0, 0, -25), 3, Vec3f(0.65, 0.77, 0.97), 1, 0.0);
+		scene.AddSphere(Vec3f(0.0f, -10004, -20), 10000, Vec3f(0.20f, 0.20f, 0.20f), 0, 0.0f);
+		scene.AddSphere(Vec3f(0.0f, 0, -20), r / 100, Vec3f(1.00f, 0.32f, 0.36f), 1, 0.5f); // Radius++ change here
+		scene.AddSphere(Vec3f(5.0f, -1, -15), 2, Vec3f(0.90f, 0.76f, 0.46f), 1, 0.0f);
+		scene.AddSphere(Vec3f(5.0f, 0, -25), 3, Vec3f(0.65f, 0.77f, 0.97f), 1, 0.0f);
 		scene.Render(r);
 		std::cout << "Rendered and saved spheres" << r << ".ppm" << std::endl;
 		// Dont forget to clear the Vector holding the spheres.
@@ -84,7 +84,7 @@ void Scene::Animate()
 	const float framesPerSecond = 30.0f; //will be in xml later maybe
 	const int totalFrames = 60;
 
-	scene.AddSphere(Vec3f(5.0f, -1, 0), 2, Vec3f(1.0f, 0.82f, 0.863f), 1, 0.0f);
+	scene.AddSphere(Vec3f(0.0f, 0, -15), 2, Vec3f(1.0f, 0.82f, 0.863f), 1, 0.0f);
 	scene.GetSphere(0).SetVelocity(1.0f, 1.0f, 1.0f);
 	for (int frame = 0; frame < totalFrames; frame++)
 	{
@@ -93,6 +93,7 @@ void Scene::Animate()
 
 		scene.Update(elapsedTimePerFrame);
 		scene.RenderThreaded(frame, 4); //experiment with number of threads
+		//scene.Render(frame);
 	}
 
 	scene.ClearSpheres();
@@ -132,7 +133,7 @@ Vec3f Scene::Trace(const Vec3f& rayorig, const Vec3f& raydir, const int depth) c
 	if ((sphere->m_transparency > 0 || sphere->reflection > 0) && depth < MAX_RAY_DEPTH) {
 		float facingratio = -raydir.dot(nhit);
 		// change the mix value to tweak the effect
-		float fresneleffect = Helpers::mix(pow(1 - facingratio, 3), 1, 0.1);
+		float fresneleffect = Helpers::mix(pow(1 - facingratio, 3), 1, 0.1f);
 		// compute reflection direction (not need to normalize because all vectors
 		// are already normalized)
 		Vec3f refldir = raydir - nhit * 2 * raydir.dot(nhit);
@@ -141,7 +142,7 @@ Vec3f Scene::Trace(const Vec3f& rayorig, const Vec3f& raydir, const int depth) c
 		Vec3f refraction = 0;
 		// if the sphere is also transparent compute refraction ray (transmission)
 		if (sphere->m_transparency) {
-			float ior = 1.1, eta = (inside) ? ior : 1 / ior; // are we inside or outside the surface?
+			float ior = 1.1f, eta = (inside) ? ior : 1 / ior; // are we inside or outside the surface?
 			float cosi = -nhit.dot(raydir);
 			float k = 1 - eta * eta * (1 - cosi * cosi);
 			Vec3f refrdir = raydir * eta + nhit * (eta * cosi - sqrt(k));
@@ -198,7 +199,7 @@ void Scene::Render(int iteration) const
 	Vec3f* image = NEW Vec3f[width * height], * pixel = image;
 	float invWidth = 1 / float(width), invHeight = 1 / float(height);
 	float fov = 30, aspectratio = width / float(height);
-	float angle = tan(M_PI * 0.5 * fov / 180.);
+	float angle = tan(M_PI * 0.5f * fov / 180.0f);
 	// Trace rays
 	for (unsigned y = 0; y < height; ++y, pixel+=width) {
 		TraceRow(y, invWidth, invHeight, angle, aspectratio, pixel, width);
@@ -233,8 +234,9 @@ void Scene::RenderThreaded(int iteration, int numThreads) const
 	//unsigned width = 1920, height = 1080;
 	Vec3f* image = NEW Vec3f[width * height];
 	float invWidth = 1 / float(width), invHeight = 1 / float(height);
-	float fov = 30, aspectratio = width / float(height);
-	float angle = tan(M_PI * 0.5 * fov / 180.);
+	float fov = 30.0f;
+	float aspectratio = width / float(height);
+	float angle = tan(M_PI * 0.5f * fov / 180.0f);
 
 	int rowsPerThread = height / numThreads;
 
@@ -262,6 +264,19 @@ void Scene::RenderThreaded(int iteration, int numThreads) const
 		thread.join();
 	}
 
+	std::vector<std::thread> ppmWorkerThreads;
+	ppmWorkerThreads.push_back(std::thread([this, iteration, width, height, image]()
+	{
+		SaveToPPM(iteration, width, height, image);
+	}));
+	for (auto& thread : ppmWorkerThreads)
+	{
+		thread.join();
+	}
+}
+
+void Scene::SaveToPPM(int iteration, int width, int height, Vec3f* image) const
+{
 	// Save result to a PPM image (keep these flags if you compile under Windows)
 	std::stringstream ss;
 	ss << "./spheres" << iteration << ".ppm";
@@ -281,8 +296,8 @@ void Scene::RenderThreaded(int iteration, int numThreads) const
 
 void Scene::TracePixel(int x, int y,float invWidth, float invHeight, float angle, float aspectratio, Vec3f* pixel) const
 {
-	float xx = (2 * ((x + 0.5) * invWidth) - 1) * angle * aspectratio;
-	float yy = (1 - 2 * ((y + 0.5) * invHeight)) * angle;
+	float xx = (2 * ((x + 0.5f) * invWidth) - 1) * angle * aspectratio;
+	float yy = (1 - 2 * ((y + 0.5f) * invHeight)) * angle;
 	Vec3f raydir(xx, yy, -1);
 	raydir.normalize();
 	*pixel = Trace(Vec3f(0), raydir, 0);
